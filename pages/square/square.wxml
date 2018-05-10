@@ -1,0 +1,5 @@
+<view class="moments">
+  <block wx:for="{{moments}}" wx:key="moments" wx:for-item="item" wx:for-index="itemIdx"> 
+    <moment moment="{{item}}"></moment>
+  </block>
+</view>

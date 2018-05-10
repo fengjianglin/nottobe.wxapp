@@ -1,0 +1,21 @@
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.post, .post::after {
+  margin-right: 36rpx;
+  color: #20bf12;
+  font-weight: 600;
+  background:rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0;
+}
+
+textarea {
+  width: 718rpx;
+  padding: 16rpx;
+}

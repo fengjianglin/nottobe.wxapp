@@ -1,0 +1,65 @@
+#user_bg {
+  background-image: url("http://manlanvideo.com/ntb/timg.png");
+  width: 100%;
+  height: 88rpx;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  position: fixed;
+}
+
+#user_bg .left {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:flex-end;
+}
+
+#user_bg image.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin: 8rpx;
+  padding: 0;
+  border: 4rpx #fff solid;
+}
+
+#user_bg .name {
+  color: #fff;
+  font-size: 28rpx;
+  margin: 8rpx;
+}
+
+#user_bg .login, #user_bg .login::after {
+  color: #fff;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 24rpx;
+  background:rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0;
+}
+
+#user_bg .xiangji {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+  background:rgba(0, 0, 0, 0);
+}
+
+.xiangji-btn, .xiangji-btn::after {
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0rpx;
+  margin-right: 20rpx;
+  background:rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0;
+}
+
+.moments {
+  padding-top: 88rpx;
+}

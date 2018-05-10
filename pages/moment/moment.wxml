@@ -1,0 +1,8 @@
+<view class="wrapper">
+  <image class="avatar" src="{{moment.author.avatar}}"></image>
+  
+  <view>
+    <view class="name">{{moment.author.nickname}}</view> 
+    <view class="text">{{moment.text}}</view>  
+  </view>
+</view>

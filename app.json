@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/square/square",
+    "pages/post/text/text"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "不是友圈",
+    "navigationBarTextStyle":"black"
+  }
+}

@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px #eeeeee solid;
+  padding-bottom: 16rpx;
+  padding-top: 8rpx;
+}
+.avatar {
+  margin: 8rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border: 4rpx #fff solid;
+}
+
+.name {
+  font-size: 28rpx;
+  color: #525691;
+  font-weight: 600;
+  margin-left: 8rpx;
+  margin-top: 10rpx;
+}
+
+.text {
+  width: 646rpx;
+  font-size: 24rpx;
+  margin-left: 8rpx;
+}
