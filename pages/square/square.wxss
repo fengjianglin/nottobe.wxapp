@@ -1,1 +1,8 @@
-/* pages/redian/redian.wxss */
+.bottom {
+  color: #ccc;
+  width: 100%;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  font-size: 24rpx;
+}

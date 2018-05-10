@@ -18,6 +18,7 @@
       <moment moment="{{item}}"></moment>
     </block>
   </view>
+  <view class="bottom" wx:if="{{isLastPage}}">底线到了...</view>
 </view>
 
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
