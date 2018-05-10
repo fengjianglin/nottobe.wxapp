@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/square/square",
-    "pages/post/text/text"
+    "pages/post/text/text",
+    "pages/post/photo/photo"
   ],
   "window":{
     "backgroundTextStyle":"light",

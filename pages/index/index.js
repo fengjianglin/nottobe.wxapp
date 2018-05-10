@@ -7,12 +7,7 @@ Page({
     user: null,
     moments: null,
     page: 0,
-    isLastPage: false,
-    actionSheetHidden: true,
-    actionSheetItems: [
-      { bindtap: 'tap_shoot', txt: '拍摄' },
-      { bindtap: 'tap_album', txt: '从手机相册选择' }
-    ]
+    isLastPage: false
   },
 
   onLoad: function (options) {
@@ -137,33 +132,20 @@ Page({
   },
 
   tap_xiangji: function () {
-    this.setData({actionSheetHidden: false})
+    wx.chooseImage({
+      count: 9, // 默认9
+      success: function (res) {
+        if (res.errMsg == "chooseImage:ok") {
+          var images = res.tempFilePaths
+          var imagesStr = JSON.stringify(images)
+          wx.navigateTo({ url: '/pages/post/photo/photo?imagesStr=' + imagesStr })
+        }
+      }
+    })
   },
 
   long_press_xiangji: function () {
     wx.navigateTo({url: '/pages/post/text/text'})
-  },
-
-  actionSheetbindchange: function () {
-    this.setData({ actionSheetHidden: true})
-  },
-
-  tap_shoot: function () {
-    this.setData({ actionSheetHidden: true})
-    wx.showToast({
-      title: '拍摄',
-      icon: 'none',
-      duration: 2000
-    })
-  },
-
-  tap_album: function () {
-    this.setData({ actionSheetHidden: true})
-    wx.showToast({
-      title: '相册',
-      icon: 'none',
-      duration: 2000
-    })
   },
 
   to_square: function () {

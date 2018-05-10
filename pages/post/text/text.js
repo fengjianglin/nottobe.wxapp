@@ -6,9 +6,6 @@ Page({
   onLoad: function (options) {
   
   },
-  onShareAppMessage: function () {
-  
-  },
 
   do_post: function(e) {
     wx.showLoading({

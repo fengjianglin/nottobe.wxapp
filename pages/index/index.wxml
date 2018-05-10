@@ -5,7 +5,7 @@
       <view class="name" wx:if="{{user.status == 1}}">{{user.nickname}}</view>
       <button class="login" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">登录</button>
     </view>
-    <image class="xiangji" bindtap="tap_xiangji" src='http://manlanvideo.com/ntb/people.png'></image>
+    <image class="xiangji" src='http://manlanvideo.com/ntb/people.png'></image>
     <image class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
     <image wx:if="{{user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
     <button class="xiangji-btn" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
@@ -20,11 +20,3 @@
   </view>
   <view class="bottom" wx:if="{{isLastPage}}">底线到了...</view>
 </view>
-
-<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
-    <block wx:for="{{actionSheetItems}}" wx:key="actionSheetItems" wx:for-item="item" wx:for-index="itemIdx">
-        <action-sheet-item bindtap="{{item.bindtap}}">{{item.txt}}</action-sheet-item>
-    </block>
-    <action-sheet-cancel>取消</action-sheet-cancel>
-</action-sheet>
-
