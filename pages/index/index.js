@@ -3,6 +3,7 @@ var app = getApp();
 
 Page({
   data: {
+    pullDownRefreshTip: "继续下拉刷新",
     user: null,
     moments: null,
     page: 0,
@@ -31,21 +32,19 @@ Page({
       }
     }
   },
+  
   onPullDownRefresh: function () {
-    // 显示顶部刷新图标  
+    var self = this
     wx.showNavigationBarLoading();
-    var self = this;
+    this.setData({ pullDownRefreshTip: "刷新中..."})
     var stop = function() {
       wx.hideNavigationBarLoading();
       wx.stopPullDownRefresh();
+      self.setData({ pullDownRefreshTip: "继续下拉刷新" })
     }
-
     setTimeout(stop, 2000)
   },  
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
     var more = require('data.js').data.data
     this.data.moments.push(...more)

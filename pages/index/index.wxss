@@ -60,6 +60,10 @@
   border-radius: 0;
 }
 
-.moments {
-  padding-top: 88rpx;
+#pull_tip {
+  color: #ccc;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
 }

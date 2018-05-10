@@ -12,6 +12,7 @@
       <image  class="xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
     </button>
   </view>
+  <view id="pull_tip">{{pullDownRefreshTip}}</view>
   <view class="moments">
     <block wx:for="{{moments}}" wx:key="moments" wx:for-item="item" wx:for-index="itemIdx"> 
       <moment moment="{{item}}"></moment>
