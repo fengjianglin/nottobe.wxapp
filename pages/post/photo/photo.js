@@ -27,7 +27,7 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         if (res.data.code == 200) {
-          self.upload_images(res.data.data.id, self.post_success, self.post_fail)
+          self.upload_images(res.data.data.id)
         } else {
           self.post_fail()
         }
@@ -36,7 +36,17 @@ Page({
     })
   },
 
-  upload_images: function(moment_id, success, fail) {
+  upload_images: function(moment_id) {
+    var self = this;
+    var length = this.data.images.length;
+    var complete = function () {
+      length--;
+      if (length <= 0){
+        console.log(self);
+        self.post_success();
+      }
+    }
+
     for(var i in this.data.images) {
       var image = this.data.images[i]
       wx.uploadFile({
@@ -47,10 +57,7 @@ Page({
           SessionId: getApp().data.sessionId,
           moment_id: moment_id
         },
-        success: function (res) {
-          var data = res.data
-          console.log(res.data)
-        }
+        complete: complete
       })
     }
   },
