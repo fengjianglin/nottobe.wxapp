@@ -74,5 +74,46 @@ Page({
       icon: 'none',
       duration: 2000
     })
+  },
+
+  preview_images: function (e) {
+    var urls = []
+    for (var i in this.data.images) {
+      urls.push(this.data.images[i])
+    }
+    wx.previewImage({
+      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    })
+  },
+
+  add_images: function () {
+    var self = this
+    wx.chooseImage({
+      count: 9 - this.data.images.length, // 默认9
+      sourceType: ['album', 'camera'], 
+      success: function (res) {
+        if (res.errMsg == "chooseImage:ok") {
+          var images = res.tempFilePaths
+          self.data.images.push(...images)
+          self.setData({images: self.data.images})
+        }
+      }
+    })
+  },
+  
+  del_images: function (e) {
+    var self = this
+    var index = e.currentTarget.dataset.index
+    wx.showModal({
+      title: '删除',
+      content: '是否确认删除？',
+      success: function (res) {
+        if (res.confirm) {
+          self.data.images.splice(index, 1)
+          self.setData({ images: self.data.images })
+        }
+      }
+    })
   }
 })

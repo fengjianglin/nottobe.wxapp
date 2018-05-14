@@ -16,6 +16,7 @@
 }
 
 textarea {
-  width: 718rpx;
+  width: 646rpx;
   padding: 16rpx;
+  margin: 16rpx 52rpx;
 }

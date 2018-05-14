@@ -1,11 +1,12 @@
 <form bindsubmit="do_post">
   <view class="wrapper">
     <button id="post_btn" class="post" form-type="submit">发表</button>
-    <textarea id="text" name="text" auto-focus placeholder='这一刻的想法...'></textarea>
-    <view>
-      <block wx:for="{{images}}" wx:key="images" wx:for-item="item" wx:for-index="itemIdx"> 
-        <image src="{{item}}"></image>
+    <textarea id="text" name="text" placeholder='这一刻的想法...'></textarea>
+    <view class='images'>
+      <block wx:for="{{images}}" wx:key="images" wx:for-item="item" wx:for-index="itemIdx">
+        <image src="{{item}}" bindtap="preview_images" bindlongpress="del_images" data-index="{{itemIdx}}"></image>
       </block>
+      <image wx:if="{{images.length < 9}}" src="http://manlanvideo.com/ntb/plus.png" bindtap="add_images"></image>
     </view>
   </view>
 </form>
