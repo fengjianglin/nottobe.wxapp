@@ -9,17 +9,16 @@ Component({
     }
   },
 
-  /**
-   * 组件的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    preview_images: function (e) {
+      var urls = []
+      for (var i in this.properties.moment.images) {
+        urls.push(this.properties.moment.images[i].url)
+      }
+      wx.previewImage({
+        current: e.currentTarget.dataset.src, // 当前显示图片的http链接
+        urls: urls // 需要预览的图片http链接列表
+      })
+    }
   }
 })

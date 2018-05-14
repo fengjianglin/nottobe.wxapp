@@ -24,6 +24,27 @@
 
 .text {
   width: 646rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  letter-spacing: 4rpx;
+  margin-top: 10rpx;
   margin-left: 8rpx;
+}
+
+.images {
+  width: 646rpx;
+  margin-top: 10rpx;
+  margin-left: 8rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.images image {
+  width: 210rpx;
+  height: 210rpx;
+  margin-right: 8rpx;
+  margin-bottom: 8rpx;
 }
