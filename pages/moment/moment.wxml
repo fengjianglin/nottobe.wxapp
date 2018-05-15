@@ -6,7 +6,7 @@
     <view class="text">{{moment.text}}</view>
     <view class="images">
       <block wx:for="{{moment.images}}" wx:key="images" wx:for-item="item" wx:for-index="itemIdx">
-        <image src="{{item.url}}" bindtap="preview_images" data-src="{{item.url}}"></image>
+        <image mode="aspectFill" src="{{item.url}}" bindtap="preview_images" data-src="{{item.url}}"></image>
       </block>
     </view>
   </view>

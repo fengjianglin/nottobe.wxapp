@@ -77,12 +77,13 @@ Page({
   },
 
   preview_images: function (e) {
+    var self = this
     var urls = []
     for (var i in this.data.images) {
-      urls.push(this.data.images[i])
+      urls.push(self.data.images[i])
     }
     wx.previewImage({
-      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
+      current: self.data.images[e.currentTarget.dataset.index], // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     })
   },
