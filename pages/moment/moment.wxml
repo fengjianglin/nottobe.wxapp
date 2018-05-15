@@ -1,4 +1,4 @@
-<view class="wrapper">
+<view id="moment_id_{{moment.id}}" class="wrapper" hidden="{{hidden}}">
   <image class="avatar" src="{{moment.author.avatar}}"></image>
   
   <view>
@@ -8,6 +8,10 @@
       <block wx:for="{{moment.images}}" wx:key="images" wx:for-item="item" wx:for-index="itemIdx">
         <image mode="aspectFill" src="{{item.url}}" bindtap="preview_images" data-src="{{item.url}}"></image>
       </block>
+    </view>
+    <view class="tools">
+      <view class="time">{{timeTxt}}</view>
+      <view class="del" wx:if="{{isMine}}" data-id="{{moment.id}}" bindtap="del_moment">删除</view>
     </view>
   </view>
 </view>
