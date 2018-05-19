@@ -1,0 +1,8 @@
+<view class='wrap'>
+  <image class="avatar" src="{{user.avatar == '' ? avatar_default : user.avatar}}"></image>
+  <view class="info"> 
+    <view class="name">{{user.nickname}}</view>
+    <view class="following" wx:if="{{isFollowing}}" bindtap='unfollown'>已关注</view>
+    <view class="follow" wx:if="{{!isFollowing}}" bindtap='follow'>+关注</view>
+  </view>
+</view>

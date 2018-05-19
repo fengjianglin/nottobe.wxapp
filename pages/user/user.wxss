@@ -1,0 +1,44 @@
+.wrap {
+  margin: 16rpx;
+  width: 340rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8rpx;
+  border-bottom: #ddd 1px solid;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {
+  padding-left: 16rpx;
+  width: 224rpx;
+  font-size: 28rpx;
+  color: #525691;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.following {
+  padding-left: 16rpx;
+  font-size: 24rpx;
+  align-self: flex-end;
+  color: #999;
+}
+
+.follow {
+  padding-left: 16rpx;
+  font-size: 24rpx;
+  align-self: flex-end;
+  color: #f0a21a;
+}

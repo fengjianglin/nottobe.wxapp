@@ -49,10 +49,6 @@
   background:rgba(0, 0, 0, 0);
 }
 
-#people {
-  display: none;
-}
-
 .xiangji-btn, .xiangji-btn::after {
   width: 48rpx;
   height: 48rpx;

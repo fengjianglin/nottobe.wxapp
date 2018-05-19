@@ -1,14 +1,16 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/square/square",
     "pages/post/text/text",
-    "pages/post/photo/photo"
+    "pages/post/photo/photo",
+    "pages/people/people",
+    "pages/user/user"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "不是友圈",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

@@ -1,0 +1,6 @@
+<view class="container">
+  <block wx:for="{{users}}" wx:key="users" wx:for-item="item" wx:for-index="itemIdx"> 
+    <user user="{{item}}"></user>
+  </block>
+</view>
+<view class="bottom" wx:if="{{isLastPage}}">底线到了...</view>

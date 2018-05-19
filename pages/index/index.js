@@ -150,6 +150,10 @@ Page({
 
   to_square: function () {
     wx.navigateTo({ url: '/pages/square/square' })
+  },
+
+  to_people: function () {
+    wx.navigateTo({ url: '/pages/people/people' })
   }
 
 })
