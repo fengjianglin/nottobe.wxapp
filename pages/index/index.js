@@ -88,7 +88,7 @@ Page({
         isLastPage: false
       })
     wx.request({
-      url: app.getUrl("/moment/mylist?SessionId=" + app.data.sessionId + "&page=" + (++self.data.page)),
+      url: app.getUrl("/moment/followingslist?SessionId=" + app.data.sessionId + "&page=" + (++self.data.page)),
       method: 'GET',
       success: function (res) {
         if (res.data.code == 200) {
@@ -113,7 +113,7 @@ Page({
     }
     var self = this
     wx.request({
-      url: app.getUrl("/moment/mylist?SessionId=" + app.data.sessionId + "&page=" + (++self.data.page)),
+      url: app.getUrl("/moment/followingslist?SessionId=" + app.data.sessionId + "&page=" + (++self.data.page)),
       method: 'GET',
       success: function (res) {
         if (res.data.code == 200) {
