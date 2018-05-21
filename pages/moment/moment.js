@@ -1,11 +1,38 @@
 
 Component({
-  /**
-   * 组件的属性列表
-   */
+
   properties: {
     moment: {
-      type: Object
+      type: Object,
+      observer: function (newVal, oldVal) {
+        var utils = require('../utils.js')
+        var time = newVal.createdAt
+        var timeStr = utils.timeTxt(time)
+        this.setData({
+          timeTxt: timeStr,
+          hidden: false,
+          isMine: false
+        })
+        var app = getApp()
+        var user = app.data.user
+        if (user.status != 1) {
+          return
+        }
+        var author = newVal.author
+        if (!utils.isBlank(user.unionid)
+          && !utils.isBlank(author.unionid)
+          && user.unionid == author.unionid) {
+          this.setData({ isMine: true })
+          return
+        }
+
+        if (!utils.isBlank(user.openid)
+          && !utils.isBlank(author.openid)
+          && user.openid == author.openid) {
+          this.setData({ isMine: true })
+          return
+        }
+      } 
     }
   },
 
@@ -14,32 +41,6 @@ Component({
     timeTxt: null,
     isMine: false
   }, 
-
-  attached: function() {
-    var utils = require('../utils.js')
-    var time = this.properties.moment.createdAt
-    var timeStr = utils.timeTxt(time)
-    this.setData({ timeTxt:  timeStr})
-    var app = getApp()
-    var user = app.data.user
-    if(user.status != 1) {
-      return
-    }
-    var author = this.properties.moment.author
-    if (!utils.isBlank(user.unionid) 
-        && !utils.isBlank(author.unionid)
-        && user.unionid == author.unionid) {
-      this.setData({ isMine: true})
-      return
-    }
-
-    if (!utils.isBlank(user.openid)
-        && !utils.isBlank(author.openid)
-        && user.openid == author.openid) {
-      this.setData({ isMine: true })
-      return
-    }
-  },
 
   methods: {
     preview_images: function (e) {
