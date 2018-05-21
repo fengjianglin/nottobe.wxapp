@@ -1,12 +1,5 @@
-// pages/post/text/text.js
-Page({
-  data: {
-  
-  },
-  onLoad: function (options) {
-  
-  },
 
+Page({
   do_post: function(e) {
     wx.showLoading({
       title: "正在发表...",
@@ -22,13 +15,19 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
         if (res.data.code == 200) {
-          wx.navigateBack()
+          wx.showToast({
+            title: '发表成功',
+            icon: 'success',
+            duration: 2000
+          })
+          setTimeout(wx.navigateBack, 1500)
         } else {
           wx.showToast({
             title: '发表失败',
             icon: 'none',
             duration: 2000
           })
+          wx.hideLoading()
         }
       },
       fail: function() {
@@ -37,8 +36,6 @@ Page({
           icon: 'none',
           duration: 2000
         })
-      },
-      complete: function() {
         wx.hideLoading()
       }
     })

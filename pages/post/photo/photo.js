@@ -63,8 +63,12 @@ Page({
   },
 
   post_success: function () {
-    wx.hideLoading()
-    wx.navigateBack()
+    wx.showToast({
+      title: '发表成功',
+      icon: 'success',
+      duration: 2000
+    })
+    setTimeout(wx.navigateBack, 1500)
   },
 
   post_fail: function() {
