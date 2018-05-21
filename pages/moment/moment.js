@@ -56,7 +56,6 @@ Component({
     del_moment: function(e) {
       var self = this
       wx.showModal({
-        title: '删除',
         content: '是否确认删除？',
         success: function (res) {
           if (res.confirm) {
