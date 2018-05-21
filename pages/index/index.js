@@ -1,5 +1,5 @@
 
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {
@@ -7,7 +7,8 @@ Page({
     user: null,
     moments: null,
     page: 0,
-    isLastPage: false
+    isLastPage: false,
+    app: app
   },
 
   onLoad: function (options) {

@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "热点明星",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {

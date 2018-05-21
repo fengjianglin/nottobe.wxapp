@@ -3,7 +3,8 @@ App({
   data: {
     "scope.userInfo": false,
     user: null,
-    sessionId: null
+    sessionId: null,
+    isReviewed: false
   },
   
   getUrl: function (path) {
@@ -11,6 +12,13 @@ App({
   },
 
   onLaunch: function () {
+    
+    var date = new Date("2018-05-23").getTime()
+    var now = new Date().getTime()
+    if(now - date > 0) {
+      this.data.isReviewed = true
+    }
+
     wx.login({
       success: res => {
         wx.request({
