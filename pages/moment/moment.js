@@ -8,11 +8,16 @@ Component({
         var utils = require('../utils.js')
         var time = newVal.createdAt
         var timeStr = utils.timeTxt(time)
+
+        var txtStatus = (newVal.text.length > 100 || newVal.text.split('\n').length > 6) ? 1 : 0
+
         this.setData({
           timeTxt: timeStr,
           hidden: false,
-          isMine: false
+          isMine: false,
+          txtStatus: txtStatus
         })
+
         var app = getApp()
         var user = app.data.user
         if (user.status != 1) {
@@ -39,10 +44,19 @@ Component({
   data: {
     hidden: false,
     timeTxt: null,
-    isMine: false
+    isMine: false,
+    txtStatus: -1 // 0 正常；1 收起； 2 全文
   }, 
 
   methods: {
+    extend: function () {
+      this.setData({ txtStatus : 2 })
+    },
+
+    fold:function(){
+      this.setData({ txtStatus: 1 })
+    },
+
     preview_images: function (e) {
       var urls = []
       for (var i in this.properties.moment.images) {

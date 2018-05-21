@@ -31,6 +31,18 @@
   margin-left: 8rpx;
 }
 
+.text text.fold {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.text view {
+  color: #525691;
+  margin-top: 8rpx;
+}
+
 .images {
   width: 646rpx;
   margin-top: 10rpx;

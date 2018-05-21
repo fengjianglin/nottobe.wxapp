@@ -3,7 +3,11 @@
   
   <view>
     <view class="name">{{moment.author.nickname}}</view> 
-    <view class="text"><text selectable>{{moment.text}}</text></view>
+    <view class="text">
+      <text selectable class="{{txtStatus == 1 ? 'fold moment--fold' : ''}}">{{moment.text}}</text>
+      <view wx:if="{{txtStatus == 1}}" bindtap='extend'>全文</view>
+      <view wx:if="{{txtStatus == 2}}" bindtap='fold'>收起</view>
+    </view>
     <view class="images">
       <block wx:for="{{moment.images}}" wx:key="images" wx:for-item="item" wx:for-index="itemIdx">
         <image mode="aspectFill" src="{{item.url}}" bindtap="preview_images" data-src="{{item.url}}"></image>
