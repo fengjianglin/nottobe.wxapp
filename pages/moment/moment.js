@@ -34,7 +34,8 @@ Component({
           isMine: false,
           txtStatus: txtStatus,
           isUpped: isUpped,
-          comment: comment
+          comment: comment,
+          ups: newVal.ups
         })
         if (user.status != 1) {
           return
@@ -63,7 +64,8 @@ Component({
     isMine: false,
     txtStatus: -1, // 0 正常；1 收起； 2 全文
     isUpped: -1,  // -1 不显示赞按钮；0 没有赞过；1 已经赞过
-    comment: -1 // -1 不显示评论按钮；1 显示评论按钮
+    comment: -1, // -1 不显示评论按钮；1 显示评论按钮
+    ups: null
   }, 
 
   methods: {
@@ -141,6 +143,11 @@ Component({
         success: function (res) {
           if (res.data.code == 200) {
             self.setData({ isUpped: 1 })
+            var app = getApp()
+            var user = app.data.user
+            var _up = { author: user}
+            self.data.ups.push(_up)
+            self.setData({ ups: self.data.ups})
           }
         }
       })
@@ -157,6 +164,15 @@ Component({
         success: function (res) {
           if (res.data.code == 200) {
             self.setData({ isUpped: 0 })
+            var app = getApp()
+            var user = app.data.user
+            for(var i in self.data.ups) {
+              if (user.id == self.data.ups[i].author.id) {
+                self.data.ups.splice(i, 1)
+                break
+              }
+            }
+            self.setData({ ups: self.data.ups })
           }
         }
       })

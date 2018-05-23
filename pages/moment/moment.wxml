@@ -1,4 +1,5 @@
 <view id="moment_id_{{moment.id}}" class="wrapper" hidden="{{hidden}}">
+
   <image class="avatar" src="{{moment.author.avatar}}"></image>
   
   <view>
@@ -24,11 +25,12 @@
         <image wx:if="{{comment == 1}}" class="comment" src='/images/comment.png'></image>
       </view>
     </view>
-    <view class="ups_comments">
+    <view class="ups_comments" wx:if="{{ups.length > 0 || moment.comments.length > 0}}">
       <view class="up_arrow"></view>
       <view class="up_list">
         <image class="up_list_icon" src='/images/up.png'></image>
-        <block wx:for="{{moment.ups}}" wx:key="ups" wx:for-item="item" wx:for-index="itemIdx">
+        <block wx:for="{{ups}}" wx:key="ups" wx:for-item="item" wx:for-index="itemIdx">
+          <text wx:if="{{itemIdx > 0}}" space="ensp" class="comma">, </text>
           <text class='up_name'>{{item.author.nickname}}</text>
         </block>
       </view>
