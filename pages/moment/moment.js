@@ -5,21 +5,37 @@ Component({
     moment: {
       type: Object,
       observer: function (newVal, oldVal) {
+
+        var app = getApp()
+        var user = app.data.user
+
         var utils = require('../utils.js')
         var time = newVal.createdAt
         var timeStr = utils.timeTxt(time)
 
         var txtStatus = (newVal.text.length > 100 || newVal.text.split('\n').length > 6) ? 1 : 0
-
+        var isUpped = -1
+        var comment = -1
+        if (user.status == 1) {
+          isUpped = 0
+          comment = 1
+          if (newVal.ups != null) {
+            for (var i in newVal.ups) {
+              var up = newVal.ups[i]
+              if (up.author.id == user.id) {
+                isUpped = 1
+              }
+            }
+          }
+        }
         this.setData({
           timeTxt: timeStr,
           hidden: false,
           isMine: false,
-          txtStatus: txtStatus
+          txtStatus: txtStatus,
+          isUpped: isUpped,
+          comment: comment
         })
-
-        var app = getApp()
-        var user = app.data.user
         if (user.status != 1) {
           return
         }
@@ -45,7 +61,9 @@ Component({
     hidden: false,
     timeTxt: null,
     isMine: false,
-    txtStatus: -1 // 0 正常；1 收起； 2 全文
+    txtStatus: -1, // 0 正常；1 收起； 2 全文
+    isUpped: -1,  // -1 不显示赞按钮；0 没有赞过；1 已经赞过
+    comment: -1 // -1 不显示评论按钮；1 显示评论按钮
   }, 
 
   methods: {
@@ -107,6 +125,38 @@ Component({
                 wx.hideLoading()
               }
             })
+          }
+        }
+      })
+    },
+    do_up: function() {
+      var self = this
+      wx.request({
+        url: getApp().getUrl("/moment/up"),
+        method: 'GET',
+        data: {
+          SessionId: getApp().data.sessionId,
+          id: self.properties.moment.id
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            self.setData({ isUpped: 1 })
+          }
+        }
+      })
+    },
+    cancel_up: function() {
+      var self = this
+      wx.request({
+        url: getApp().getUrl("/moment/cancel_up"),
+        method: 'GET',
+        data: {
+          SessionId: getApp().data.sessionId,
+          id: self.properties.moment.id
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            self.setData({ isUpped: 0 })
           }
         }
       })
