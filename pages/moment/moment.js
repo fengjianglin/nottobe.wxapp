@@ -35,7 +35,8 @@ Component({
           txtStatus: txtStatus,
           isUpped: isUpped,
           isCommentBtn: isCommentBtn,
-          ups: newVal.ups
+          ups: newVal.ups,
+          comments: newVal.comments
         })
         if (user.status != 1) {
           return
@@ -66,7 +67,10 @@ Component({
     isUpped: -1,  // -1 不显示赞按钮；0 没有赞过；1 已经赞过
     isCommentBtn: -1, // -1 不显示评论按钮；1 显示评论按钮
     ups: null,
-    showCommentInput: false
+    showCommentInput: false,
+    comments: null,
+    commentInputPlaceholder: "评论",
+    toUserId: 0
   }, 
 
   methods: {
@@ -88,6 +92,7 @@ Component({
         urls: urls // 需要预览的图片http链接列表
       })
     },
+
     del_moment: function(e) {
       var self = this
       wx.showModal({
@@ -153,6 +158,7 @@ Component({
         }
       })
     },
+
     cancel_up: function() {
       var self = this
       wx.request({
@@ -179,16 +185,121 @@ Component({
       })
     },
 
-    show_comment_input: function() {
-      this.setData({ showCommentInput: true })
+    show_comment_input: function (placeholder, toUserId) {
+      this.setData({ 
+        showCommentInput: true, 
+        commentInputPlaceholder: placeholder,
+        toUserId: toUserId
+      })
     },
-    
+
     hide_comment_input: function () {
       this.setData({ showCommentInput: false });
     },
     
-    do_comment:function() {
-      this.hide_comment_input();
+    tap_comment_btn: function () {
+      this.show_comment_input("评论", 0)
+    },
+
+    do_comment: function(e) {
+      var self = this
+      var text = e.detail.value
+      wx.showLoading({
+        title: "正在发表...",
+        mask: true
+      })
+      wx.request({
+        url: getApp().getUrl("/moment/post_comment"),
+        method: 'POST',
+        data: {
+          SessionId: getApp().data.sessionId,
+          mid: this.properties.moment.id,
+          text: text,
+          to_user_id: this.data.toUserId
+        },
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          if (res.data.code == 200) {
+            var c = res.data.data
+            self.data.comments.push(c)
+            self.setData({ comments: self.data.comments })
+            wx.showToast({
+              title: '发表成功',
+              icon: 'success',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '发表失败',
+              icon: 'none',
+              duration: 2000
+            })
+            wx.hideLoading()
+          }
+        },
+        fail: function () {
+          wx.showToast({
+            title: '发表失败',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.hideLoading()
+        }
+      })
+    },
+
+    tap_comment: function(e) {
+      var self = this
+      var index = e.currentTarget.dataset.commnet_index
+      var comment = this.data.comments[index]
+      var app = getApp()
+      var user = app.data.user
+      if (user.id == comment.author.id) {
+        wx.showModal({
+          content: '是否确认删除？',
+          success: function (res) {
+            if (res.confirm) {
+              wx.showLoading({
+                title: "正在删除...",
+                mask: true
+              })
+              wx.request({
+                url: getApp().getUrl("/moment/delete_comment"),
+                method: 'POST',
+                data: {
+                  SessionId: getApp().data.sessionId,
+                  id: comment.id
+                },
+                header: { 'content-type': 'application/x-www-form-urlencoded' },
+                success: function (res) {
+                  if (res.data.code == 200) {
+                    self.data.comments.splice(index, 1)
+                    self.setData({ comments: self.data.comments })
+                  } else {
+                    wx.showToast({
+                      title: '删除失败',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
+                },
+                fail: function () {
+                  wx.showToast({
+                    title: '删除失败',
+                    icon: 'none',
+                    duration: 2000
+                  })
+                },
+                complete: function () {
+                  wx.hideLoading()
+                }
+              })
+            }
+          }
+        })
+      } else { // 回复某人
+        this.show_comment_input("回复" + comment.author.nickname + "：", comment.author.id)
+      }
     }
   }
 })

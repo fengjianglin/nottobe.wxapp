@@ -22,16 +22,26 @@
       <view class="right">
         <image wx:if="{{isUpped == 1}}" class="upped" src='/images/upped.png' bindtap='cancel_up'></image>
         <image wx:if="{{isUpped == 0}}" class="up" src='/images/up.png' bindtap='do_up'></image>
-        <image wx:if="{{isCommentBtn == 1}}" class="comment" src='/images/comment.png' bindtap='show_comment_input'></image>
+        <image wx:if="{{isCommentBtn == 1}}" class="comment" src='/images/comment.png' bindtap='tap_comment_btn'></image>
       </view>
     </view>
-    <view class="ups_comments" wx:if="{{ups.length > 0 || moment.comments.length > 0}}">
+    <view class="ups_comments" wx:if="{{ups.length > 0 || comments.length > 0}}">
       <view class="up_arrow"></view>
-      <view class="up_list">
+      <view class="up_list" wx:if="{{ups.length > 0}}">
         <image class="up_list_icon" src='/images/up.png'></image>
         <block wx:for="{{ups}}" wx:key="ups" wx:for-item="item" wx:for-index="itemIdx">
           <text wx:if="{{itemIdx > 0}}" space="ensp" class="comma">, </text>
           <text class='up_name'>{{item.author.nickname}}</text>
+        </block>
+      </view>
+      <view wx:if="{{ups.length > 0 && comments.length > 0}}" class="ups_comments_split"></view>
+      <view class="comment_list" wx:if="{{comments.length > 0}}">
+        <block wx:for="{{comments}}" wx:key="comments" wx:for-item="item" wx:for-index="itemIdx">
+            <view hover-class="comment_text_hover" hover-stay-time="50" bindtap='tap_comment' data-commnet_index="{{itemIdx}}">
+              <text class="comment_text">
+                <text class="comment_author">{{item.author.nickname}}</text>：{{item.text}}
+              </text>
+            </view>
         </block>
       </view>
     </view>
@@ -40,5 +50,5 @@
 
 <!--弹窗-->
 <view wx:if="{{showCommentInput}}" class="comment-view">
-  <input class="comment-input" cursor-spacing="0" focus='true' confirm-type="send" bindblur="hide_comment_input" bindconfirm="do_comment" placeholder="评论"></input>
+  <input class="comment-input" cursor-spacing="0" focus='true' confirm-type="send" bindblur="hide_comment_input" bindconfirm='do_comment' placeholder="{{commentInputPlaceholder}}"></input>
 </view>
