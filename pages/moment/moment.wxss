@@ -138,3 +138,28 @@ image.comment, image.up, image.upped {
   margin-bottom: 6rpx;
   color: #525691;
 }
+
+/* COMMENT INPUT */
+.comment-view {
+  width: 750rpx;
+  height: 88rpx;
+  position: fixed;
+  bottom: 0rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #e9e9e9;
+}
+
+.comment-input {
+  width: 654rpx;
+  height: 56rpx;
+  margin: 16rpx 32rpx;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}

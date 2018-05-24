@@ -15,10 +15,10 @@ Component({
 
         var txtStatus = (newVal.text.length > 100 || newVal.text.split('\n').length > 6) ? 1 : 0
         var isUpped = -1
-        var comment = -1
+        var isCommentBtn = -1
         if (user.status == 1) {
           isUpped = 0
-          comment = 1
+          isCommentBtn = 1
           if (newVal.ups != null) {
             for (var i in newVal.ups) {
               var up = newVal.ups[i]
@@ -34,7 +34,7 @@ Component({
           isMine: false,
           txtStatus: txtStatus,
           isUpped: isUpped,
-          comment: comment,
+          isCommentBtn: isCommentBtn,
           ups: newVal.ups
         })
         if (user.status != 1) {
@@ -64,8 +64,9 @@ Component({
     isMine: false,
     txtStatus: -1, // 0 正常；1 收起； 2 全文
     isUpped: -1,  // -1 不显示赞按钮；0 没有赞过；1 已经赞过
-    comment: -1, // -1 不显示评论按钮；1 显示评论按钮
-    ups: null
+    isCommentBtn: -1, // -1 不显示评论按钮；1 显示评论按钮
+    ups: null,
+    showCommentInput: false
   }, 
 
   methods: {
@@ -176,6 +177,18 @@ Component({
           }
         }
       })
+    },
+
+    show_comment_input: function() {
+      this.setData({ showCommentInput: true })
+    },
+    
+    hide_comment_input: function () {
+      this.setData({ showCommentInput: false });
+    },
+    
+    do_comment:function() {
+      this.hide_comment_input();
     }
   }
 })

@@ -22,7 +22,7 @@
       <view class="right">
         <image wx:if="{{isUpped == 1}}" class="upped" src='/images/upped.png' bindtap='cancel_up'></image>
         <image wx:if="{{isUpped == 0}}" class="up" src='/images/up.png' bindtap='do_up'></image>
-        <image wx:if="{{comment == 1}}" class="comment" src='/images/comment.png'></image>
+        <image wx:if="{{isCommentBtn == 1}}" class="comment" src='/images/comment.png' bindtap='show_comment_input'></image>
       </view>
     </view>
     <view class="ups_comments" wx:if="{{ups.length > 0 || moment.comments.length > 0}}">
@@ -36,4 +36,9 @@
       </view>
     </view>
   </view>
+</view>
+
+<!--弹窗-->
+<view wx:if="{{showCommentInput}}" class="comment-view">
+  <input class="comment-input" cursor-spacing="0" focus='true' confirm-type="send" bindblur="hide_comment_input" bindconfirm="do_comment" placeholder="评论"></input>
 </view>
