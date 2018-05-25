@@ -39,7 +39,7 @@
         <block wx:for="{{comments}}" wx:key="comments" wx:for-item="item" wx:for-index="itemIdx">
             <view hover-class="comment_text_hover" hover-stay-time="50" bindtap='tap_comment' data-commnet_index="{{itemIdx}}">
               <text class="comment_text">
-                <text class="comment_author">{{item.author.nickname}}</text>：{{item.text}}
+                <text class="comment_author">{{item.author.nickname}}</text><text wx:if="{{item.toUser != null}}" space="ensp"> 回复 </text><text wx:if="{{item.toUser != null}}" class="comment_author">{{item.toUser.nickname}}</text>：{{item.text}}
               </text>
             </view>
         </block>
