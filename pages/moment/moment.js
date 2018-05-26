@@ -60,6 +60,7 @@ Component({
   },
 
   data: {
+    app: getApp(),
     hidden: false,
     timeTxt: null,
     isMine: false,

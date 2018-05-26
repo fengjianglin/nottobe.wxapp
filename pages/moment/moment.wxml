@@ -14,7 +14,7 @@
         <image mode="aspectFill" src="{{item.url}}" bindtap="preview_images" data-src="{{item.url}}"></image>
       </block>
     </view>
-    <view class="tools">
+    <view class="tools" wx:if="{{app.data.isReviewed}}">
       <view class='left'>
         <view class="time">{{timeTxt}}</view>
         <view class="del" wx:if="{{isMine}}" data-id="{{moment.id}}" bindtap="del_moment">删除</view>
@@ -25,7 +25,7 @@
         <image wx:if="{{isCommentBtn == 1}}" class="comment" src='/images/comment.png' bindtap='tap_comment_btn'></image>
       </view>
     </view>
-    <view class="ups_comments" wx:if="{{ups.length > 0 || comments.length > 0}}">
+    <view class="ups_comments" wx:if="{{(ups.length > 0 || comments.length > 0) && app.data.isReviewed}}">
       <view class="up_arrow"></view>
       <view class="up_list" wx:if="{{ups.length > 0}}">
         <image class="up_list_icon" src='/images/up.png'></image>

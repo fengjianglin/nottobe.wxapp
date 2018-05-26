@@ -56,7 +56,12 @@ Page({
     })
   },
 
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {
+    return {
+      title: ' ',
+      path: '/pages/index/index'
+    }
+  },
 
   getuserinfo: res => {
     if (res.detail.errMsg == "getUserInfo:ok") {

@@ -35,7 +35,10 @@ Page({
   },
 
   onShareAppMessage: function () {
-  
+    return {
+      title: ' ',
+      path: '/pages/people/people'
+    }
   },
 
   fresh: function (callback) {

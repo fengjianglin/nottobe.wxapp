@@ -30,7 +30,12 @@ Page({
     })
   },
 
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {
+    return {
+      title: ' ',
+      path: '/pages/square/square'
+    }
+  },
 
   fresh: function (callback) {
     var self = this
