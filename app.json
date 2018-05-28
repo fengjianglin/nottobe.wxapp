@@ -5,7 +5,8 @@
     "pages/post/text/text",
     "pages/post/photo/photo",
     "pages/people/people",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/tuya/tuya"
   ],
   "window": {
     "backgroundTextStyle": "light",

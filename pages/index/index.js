@@ -12,6 +12,14 @@ Page({
   },
 
   onLoad: function (options) {
+    
+    if (!app.data.isReviewed){
+      wx.redirectTo({
+        url: '/pages/tuya/tuya'
+      })
+      return;
+    }
+  
     var self = this
     if(app.data.user == null) {
       app.setUserInfo = function (user) {

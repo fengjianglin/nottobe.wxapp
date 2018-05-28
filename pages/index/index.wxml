@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" hidden="{{!app.data.isReviewed}}">
   <view id="user_bg">
     <view class="left">
       <image class="avatar" src="{{(user == null || user.status == 0) ? 'http://manlanvideo.com/ntb/default_avatar.png' : user.avatar}}"></image>
