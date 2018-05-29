@@ -13,7 +13,7 @@ App({
 
   onLaunch: function () {
     
-    var date = new Date("2018-05-30").getTime()
+    var date = new Date("2018-05-31").getTime()
     var now = new Date().getTime()
     if(now - date > 0) {
       this.data.isReviewed = true

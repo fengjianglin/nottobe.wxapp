@@ -15,7 +15,7 @@ Page({
     
     if (!app.data.isReviewed){
       wx.redirectTo({
-        url: '/pages/tuya/tuya'
+        url: '/pages/calc/calc'
       })
       return;
     }

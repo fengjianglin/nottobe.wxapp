@@ -5,10 +5,10 @@
       <view class="name" wx:if="{{user.status == 1}}">{{user.nickname}}</view>
       <button class="login" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">登录</button>
     </view>
-    <image wx:if="{{app.data.isReviewed}}" class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>
-    <image wx:if="{{app.data.isReviewed}}" class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
-    <image wx:if="{{app.data.isReviewed && user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
-    <button class="xiangji-btn" wx:if="{{app.data.isReviewed && user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
+    <image class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>
+    <image class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
+    <image wx:if="{{user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
+    <button class="xiangji-btn" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
       <image  class="xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
     </button>
   </view>
