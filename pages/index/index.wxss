@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items:center;
   position: fixed;
+  z-index: 2;
 }
 
 #user_bg .left {
@@ -58,6 +59,15 @@
   background:rgba(0, 0, 0, 0);
   border: none;
   border-radius: 0;
+}
+
+.big_login_btn, .big_login_btn::after {
+  z-index: 1;
+  background:rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #pull_tip {

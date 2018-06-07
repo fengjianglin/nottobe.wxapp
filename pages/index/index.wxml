@@ -5,18 +5,24 @@
       <view class="name" wx:if="{{user.status == 1}}">{{user.nickname}}</view>
       <button class="login" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">登录</button>
     </view>
-    <image class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>
-    <image class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
+    <image wx:if="{{user.status == 1}}" class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>
+    <image wx:if="{{user.status == 1}}" class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
     <image wx:if="{{user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
     <button class="xiangji-btn" wx:if="{{user.status == 0}}" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
       <image  class="xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
     </button>
   </view>
   <view id="pull_tip">{{pullDownRefreshTip}}</view>
+  
+  <button wx:if="{{user.status == 0}}" class="big_login_btn" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
+      <image src='/images/login.png' mode='widthFix' style='width: 750rpx;padding: 0;margin: 0;'></image>
+  </button>
+
   <view class="moments">
     <block wx:for="{{moments}}" wx:key="moments" wx:for-item="item" wx:for-index="itemIdx"> 
       <moment moment="{{item}}"></moment>
     </block>
   </view>
-  <view class="bottom" wx:if="{{isLastPage}}">底线到了...</view>
+  <view class="bottom" wx:if="{{isLastPage && user.status == 1}}">底线到了...</view>
+  <view class="bottom" wx:if="{{isLastPage && user.status == 0}}">登陆后加载更多...</view>
 </view>
