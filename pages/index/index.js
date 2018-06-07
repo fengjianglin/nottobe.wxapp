@@ -4,11 +4,10 @@ const app = getApp();
 Page({
   data: {
     pullDownRefreshTip: "继续下拉刷新",
-    user: null,
     moments: null,
     page: 0,
     isLastPage: false,
-    app: app
+    appData: app.data
   },
 
   onLoad: function (options) {
@@ -21,20 +20,14 @@ Page({
     }
   
     var self = this
-    if(app.data.user == null) {
-      app.setUserInfo = function (user) {
-        self.setData({user: user})
-      }
-    } else {
-      this.setData({user: app.data.user})
-    }
 
-    if (app.data.sessionId) {
+    if (this.data.appData.sessionId) {
       self.fresh()
     } else {
-      app.setSessionIdInIndex = function (sessionId) {
+      app.registerDataChangeListener(_appData => {
+        self.setData({ appData: _appData })
         self.fresh()
-      }
+      })
     }
   },
 
@@ -74,21 +67,17 @@ Page({
   getuserinfo: res => {
     if (res.detail.errMsg == "getUserInfo:ok") {
       wx.request({
-        url: getApp().getUrl("/user/authorize"),
+        url: app.getUrl("/user/authorize"),
         method: 'POST',
         data: {
-          SessionId: getApp().data.sessionId,
+          SessionId: app.data.sessionId,
           encryptedData: res.detail.encryptedData,
           iv: res.detail.iv
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
           if (res.data.code == 200) {
-            var user = res.data.data
-            getApp().data.user = user
-            if (getApp().setUserInfo) {
-              getApp().setUserInfo(user)
-            }
+              app.setData({ user: res.data.data})
           }
         }
       })
