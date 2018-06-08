@@ -3,7 +3,6 @@ App({
   data: {
     user: null,
     sessionId: null,
-    isReviewed: false
   },
 
   dataChangeListeners: [],
@@ -26,13 +25,6 @@ App({
   },
 
   onLaunch: function () {
-    
-    var date = new Date("2018-03-31").getTime()
-    var now = new Date().getTime()
-    if(now - date > 0) {
-      this.data.isReviewed = true
-    }
-
     wx.login({
       success: res => {
         wx.request({

@@ -7,28 +7,40 @@ Page({
     moments: null,
     page: 0,
     isLastPage: false,
-    appData: app.data
+    appData: app.data,
+    isReviewed: false
   },
 
   onLoad: function (options) {
-    
-    if (!app.data.isReviewed){
-      wx.redirectTo({
-        url: '/pages/calc/calc'
-      })
-      return;
-    }
-  
     var self = this
+    wx.request({
+      url: app.getUrl('/ntb/reviewed.txt'),
+      method: 'GET',
+      success: function (res) {
+        if (res.data == 1) {
+          self.setData({ isReviewed: true })
+          if (self.data.appData.sessionId) {
+            self.fresh()
+          } else {
+            app.registerDataChangeListener(_appData => {
+              self.setData({ appData: _appData })
+              self.fresh()
+            })
+          }
+        } else {
+          self.toCalc()
+        }
+      },
+      fail: function () {
+        self.toCalc()
+      }
+    })
+  },
 
-    if (this.data.appData.sessionId) {
-      self.fresh()
-    } else {
-      app.registerDataChangeListener(_appData => {
-        self.setData({ appData: _appData })
-        self.fresh()
-      })
-    }
+  toCalc: function () {
+    wx.redirectTo({
+      url: '/pages/calc/calc'
+    })
   },
 
   // 下拉刷新
