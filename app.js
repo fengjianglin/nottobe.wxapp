@@ -36,7 +36,29 @@ App({
                 user: res.data.data,
                 sessionId: res.data.sessionId
               })
-            }
+              wx.getUserInfo({
+                success: res => {
+                  wx.request({
+                    url: getApp().getUrl("/user/authorize"),
+                    method: 'POST',
+                    data: {
+                      SessionId: getApp().data.sessionId,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv
+                    },
+                    header: { 'content-type': 'application/x-www-form-urlencoded' },
+                    success: function (res) {
+                      if (res.data.code == 200) {
+                        getApp().setData({
+                          user: res.data.data,
+                          sessionId: res.data.sessionId
+                        })
+                      }
+                    }
+                  })
+                }
+              })
+            } 
           }
         })
       }

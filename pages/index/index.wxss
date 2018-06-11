@@ -19,7 +19,7 @@
   align-items:flex-end;
 }
 
-#user_bg image.avatar {
+#user_bg .avatar {
   width: 64rpx;
   height: 64rpx;
   margin: 8rpx;
