@@ -1,4 +1,4 @@
-<view class="container" hidden="{{!isReviewed}}">
+<view class="container">
   <view id="user_bg">
     <view class="left">
       

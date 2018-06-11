@@ -7,40 +7,18 @@ Page({
     moments: null,
     page: 0,
     isLastPage: false,
-    appData: app.data,
-    isReviewed: false
+    appData: app.data
   },
 
   onLoad: function (options) {
     var self = this
-    wx.request({
-      url: app.getUrl('/ntb/reviewed.txt.3.txt'),
-      method: 'GET',
-      success: function (res) {
-        if (res.data == 1) {
-          self.setData({ isReviewed: true })
-          if (self.data.appData.sessionId) {
-            self.fresh()
-          } else {
-            app.registerDataChangeListener(_appData => {
-              self.setData({ appData: _appData })
-              self.fresh()
-            })
-          }
-        } else {
-          self.toCalc()
-        }
-      },
-      fail: function () {
-        self.toCalc()
-      }
+    app.registerDataChangeListener(_appData => {
+      self.setData({ appData: _appData })
+      self.fresh()
     })
-  },
-
-  toCalc: function () {
-    wx.redirectTo({
-      url: '/pages/calc/calc'
-    })
+    if (this.data.appData.sessionId) {
+      this.fresh()
+    }
   },
 
   // 下拉刷新
@@ -55,7 +33,7 @@ Page({
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
       setTimeout(restoreTip, 500)
-    })   
+    })
   },  
 
   // 上拉加载更多
@@ -76,24 +54,8 @@ Page({
     }
   },
 
-  getuserinfo: res => {
-    if (res.detail.errMsg == "getUserInfo:ok") {
-      wx.request({
-        url: app.getUrl("/user/authorize"),
-        method: 'POST',
-        data: {
-          SessionId: app.data.sessionId,
-          encryptedData: res.detail.encryptedData,
-          iv: res.detail.iv
-        },
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
-        success: function (res) {
-          if (res.data.code == 200) {
-              app.setData({ user: res.data.data})
-          }
-        }
-      })
-    }
+  getuserinfo: function (res) {
+    app.getUserInfo(res)
   },
 
   fresh: function (callback) {
@@ -103,7 +65,7 @@ Page({
         isLastPage: false
       })
     wx.request({
-      url: app.getUrl("/moment/followingslist?SessionId=" + app.data.sessionId + "&page=" + (++self.data.page)),
+      url: app.getUrl("/moment/followingslist?SessionId=" + self.data.appData.sessionId + "&page=" + (++self.data.page)),
       method: 'GET',
       success: function (res) {
         if (res.data.code == 200) {

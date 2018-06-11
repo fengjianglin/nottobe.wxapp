@@ -23,45 +23,25 @@ App({
   registerDataChangeListener: function(l) {
     this.dataChangeListeners.push(l)
   },
-
-  onLaunch: function () {
-    wx.login({
-      success: res => {
-        wx.request({
-          url: this.getUrl('/user/login?code=' + res.code),
-          method: 'GET',
-          success: function (res) {
-            if (res.data.code == 200) {
-              getApp().setData({
-                user: res.data.data,
-                sessionId: res.data.sessionId
-              })
-              wx.getUserInfo({
-                success: res => {
-                  wx.request({
-                    url: getApp().getUrl("/user/authorize"),
-                    method: 'POST',
-                    data: {
-                      SessionId: getApp().data.sessionId,
-                      encryptedData: res.encryptedData,
-                      iv: res.iv
-                    },
-                    header: { 'content-type': 'application/x-www-form-urlencoded' },
-                    success: function (res) {
-                      if (res.data.code == 200) {
-                        getApp().setData({
-                          user: res.data.data,
-                          sessionId: res.data.sessionId
-                        })
-                      }
-                    }
-                  })
-                }
-              })
-            } 
+  
+  getUserInfo: function (res) {
+    var self = this
+    if (res.detail.errMsg == "getUserInfo:ok") {
+      wx.request({
+        url: self.getUrl("/user/authorize"),
+        method: 'POST',
+        data: {
+          SessionId: self.data.sessionId,
+          encryptedData: res.detail.encryptedData,
+          iv: res.detail.iv
+        },
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          if (res.data.code == 200) {
+            self.setData({ user: res.data.data })
           }
-        })
-      }
-    })
+        }
+      })
+    }
   }
 })

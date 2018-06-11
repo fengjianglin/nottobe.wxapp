@@ -1,14 +1,15 @@
 {
   "pages": [
+    "pages/splash/splash",
     "pages/index/index",
     "pages/square/square",
     "pages/post/text/text",
     "pages/post/photo/photo",
     "pages/people/people",
     "pages/user/user",
-    "pages/tuya/tuya",
-    "pages/calc/calc",
-    "pages/calc/list/list"
+    "pages/tuya/tuya", 
+    "pages/calc/calc", 
+    "pages/calc/list/list" 
   ],
   "window": {
     "backgroundTextStyle": "light",
