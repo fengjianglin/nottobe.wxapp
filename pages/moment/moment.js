@@ -1,66 +1,14 @@
+const app = getApp()
 
 Component({
-
   properties: {
     moment: {
       type: Object,
-      observer: function (newVal, oldVal) {
-
-        var app = getApp()
-        var user = app.data.user
-
-        var utils = require('../utils.js')
-        var time = newVal.createdAt
-        var timeStr = utils.timeTxt(time)
-
-        var txtStatus = (newVal.text.length > 100 || newVal.text.split('\n').length > 6) ? 1 : 0
-        var isUpped = -1
-        var isCommentBtn = -1
-        if (user.status == 1) {
-          isUpped = 0
-          isCommentBtn = 1
-          if (newVal.ups != null) {
-            for (var i in newVal.ups) {
-              var up = newVal.ups[i]
-              if (up.author.id == user.id) {
-                isUpped = 1
-              }
-            }
-          }
-        }
-        this.setData({
-          timeTxt: timeStr,
-          hidden: false,
-          isMine: false,
-          txtStatus: txtStatus,
-          isUpped: isUpped,
-          isCommentBtn: isCommentBtn,
-          ups: newVal.ups,
-          comments: newVal.comments
-        })
-        if (user.status != 1) {
-          return
-        }
-        var author = newVal.author
-        if (!utils.isBlank(user.unionid)
-          && !utils.isBlank(author.unionid)
-          && user.unionid == author.unionid) {
-          this.setData({ isMine: true })
-          return
-        }
-
-        if (!utils.isBlank(user.openid)
-          && !utils.isBlank(author.openid)
-          && user.openid == author.openid) {
-          this.setData({ isMine: true })
-          return
-        }
-      } 
+      observer: 'moment_observer'
     }
   },
 
   data: {
-    app: getApp(),
     hidden: false,
     timeTxt: null,
     isMine: false,
@@ -71,10 +19,76 @@ Component({
     showCommentInput: false,
     comments: null,
     commentInputPlaceholder: "评论",
-    toUserId: 0
+    toUserId: 0,
+    appData: app.data
   }, 
+  
+  attached: function () {
+    var self = this
+    app.registerDataChangeListener(_appData => {
+      self.setData({ appData: _appData })
+    })
+  },
 
   methods: {
+    moment_observer: function (newVal, oldVal) {
+      var user = app.data.user
+      var utils = require('../utils.js')
+      var time = newVal.createdAt
+      var timeStr = utils.timeTxt(time)
+
+      var txtStatus = (newVal.text.length > 100 || newVal.text.split('\n').length > 6) ? 1 : 0
+      var isUpped = -1
+      var isCommentBtn = -1
+      if (user.status == 1) {
+        isUpped = 0
+        isCommentBtn = 1
+        if (newVal.ups != null) {
+          for (var i in newVal.ups) {
+            var up = newVal.ups[i]
+            if (up.author.id == user.id) {
+              isUpped = 1
+            }
+          }
+        }
+      }
+      this.setData({
+        timeTxt: timeStr,
+        hidden: false,
+        isMine: false,
+        txtStatus: txtStatus,
+        isUpped: isUpped,
+        isCommentBtn: isCommentBtn,
+        ups: newVal.ups,
+        comments: newVal.comments
+      })
+      if (user.status != 1) {
+        return
+      }
+      var author = newVal.author
+      if (!utils.isBlank(user.unionid)
+        && !utils.isBlank(author.unionid)
+        && user.unionid == author.unionid) {
+        this.setData({ isMine: true })
+        return
+      }
+
+      if (!utils.isBlank(user.openid)
+        && !utils.isBlank(author.openid)
+        && user.openid == author.openid) {
+        this.setData({ isMine: true })
+        return
+      }
+    },
+
+    getuserinfo: function (res) {
+      app.getUserInfo(res)
+    },
+
+    to_user_detail: function () {
+      console.log("to_user_detail")
+    },
+
     extend: function () {
       this.setData({ txtStatus : 2 })
     },

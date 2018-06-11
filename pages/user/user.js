@@ -21,7 +21,6 @@ Component({
       },
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success: function (res) {
-        console.log(res)
         if (res.data.code == 200) {
           self.setData({ isFollowing: res.data.data})
         }
@@ -45,7 +44,6 @@ Component({
               },
               header: { 'content-type': 'application/x-www-form-urlencoded' },
               success: function (res) {
-                console.log(res)
                 if (res.data.code == 200) {
                   self.setData({ isFollowing: false })
                 }
@@ -66,7 +64,6 @@ Component({
         },
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         success: function (res) {
-          console.log(res)
           if (res.data.code == 200) {
             self.setData({ isFollowing: true })
           }
