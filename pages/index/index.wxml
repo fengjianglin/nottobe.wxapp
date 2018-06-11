@@ -1,8 +1,12 @@
 <view class="container" hidden="{{!isReviewed}}">
   <view id="user_bg">
     <view class="left">
-      <open-data wx:if="{{appData.user.status == 0}}" class="avatar" type="userAvatarUrl"></open-data>
-      <open-data wx:if="{{appData.user.status == 0}}" class="name" type="userNickName"></open-data>
+      
+      <button wx:if="{{appData.user.status == 0}}" class="avatar-login-btn" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
+        <open-data class="avatar" type="userAvatarUrl"></open-data>
+        <open-data class="name" type="userNickName"></open-data>
+      </button>
+      
       <image wx:if="{{appData.user.status == 1}}" class="avatar" src="{{appData.user.avatar}}"></image>
       <view wx:if="{{appData.user.status == 1}}" class="name" >{{appData.user.nickname}}</view>
     </view>
