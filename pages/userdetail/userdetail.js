@@ -63,6 +63,13 @@ Page({
   
   },
 
+  show_hb: function () {
+    var time = new Date().getTime();
+    wx.previewImage({
+      urls: [app.getUrl('/user/hb/' + this.data.id + '.png?' + time)],
+    })
+  },
+
   unfollow: function () {
     var self = this
     wx.showModal({

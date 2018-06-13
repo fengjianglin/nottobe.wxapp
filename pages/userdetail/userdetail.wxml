@@ -1,5 +1,5 @@
 <view class='wrap'>
-  <image class="avatar" src="{{user.avatar == '' ? avatar_default : user.avatar}}"></image>
+  <image class="avatar" src="{{user.avatar == '' ? avatar_default : user.avatar}}" bindtap='show_hb'></image>
   <view class="following" wx:if="{{isFollowing == 1}}" bindtap='unfollow'>已关注</view>
   <view class="follow" wx:if="{{isFollowing == 0}}" bindtap='follow'>+关注</view>
   <view class="follows">

@@ -6,7 +6,7 @@ Page({
   onLoad: function (options) {
     var self = this
     wx.request({
-      url: app.getUrl('/ntb/reviewed.txt.4.txt'),
+      url: app.getUrl('/ntb/reviewed.txt.3.txt'),
       method: 'GET',
       success: function (res) {
         if (res.data == 1) {
