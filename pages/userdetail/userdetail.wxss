@@ -1,0 +1,44 @@
+.wrap {
+  margin: 0rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8rpx;
+  border-bottom: #ddd 1px solid;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.following {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.follow {
+  font-size: 24rpx;
+  color: #f0a21a;
+}
+
+.wrap .follows {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.wrap .follows #follows_split {
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+}

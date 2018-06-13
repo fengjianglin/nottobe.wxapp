@@ -1,0 +1,16 @@
+<view class='wrap'>
+  <image class="avatar" src="{{user.avatar == '' ? avatar_default : user.avatar}}"></image>
+  <view class="following" wx:if="{{isFollowing == 1}}" bindtap='unfollow'>已关注</view>
+  <view class="follow" wx:if="{{isFollowing == 0}}" bindtap='follow'>+关注</view>
+  <view class="follows">
+    <view id="followings_num">关注({{user.followings}})</view>
+    <text id="follows_split">|</text>
+    <view id="followers_num">粉丝({{user.followers}})</view>
+  </view>
+</view>
+
+<view class="moments">
+  <block wx:for="{{moments}}" wx:key="moments" wx:for-item="item" wx:for-index="itemIdx"> 
+    <moment moment="{{item}}"></moment>
+  </block>
+</view>

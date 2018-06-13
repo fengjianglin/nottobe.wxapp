@@ -29,7 +29,7 @@ Component({
   },
 
   methods: {
-    unfollown: function () {
+    unfollow: function () {
       var self = this
       wx.showModal({
         content: "是否取消关注:" + self.properties.user.nickname,

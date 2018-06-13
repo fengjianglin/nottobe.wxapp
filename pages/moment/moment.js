@@ -86,7 +86,7 @@ Component({
     },
 
     to_user_detail: function () {
-      console.log("to_user_detail")
+      wx.navigateTo({ url: '/pages/userdetail/userdetail?id=' + this.properties.moment.author.id })
     },
 
     extend: function () {
