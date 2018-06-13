@@ -3,9 +3,9 @@
   <view class="following" wx:if="{{isFollowing == 1}}" bindtap='unfollow'>已关注</view>
   <view class="follow" wx:if="{{isFollowing == 0}}" bindtap='follow'>+关注</view>
   <view class="follows">
-    <view id="followings_num">关注({{user.followings}})</view>
+    <view id="followings_num" bindtap='to_followings'>关注({{user.followings}})</view>
     <text id="follows_split">|</text>
-    <view id="followers_num">粉丝({{user.followers}})</view>
+    <view id="followers_num" bindtap='to_followers'>粉丝({{user.followers}})</view>
   </view>
 </view>
 

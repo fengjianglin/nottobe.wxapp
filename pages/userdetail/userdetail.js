@@ -108,6 +108,14 @@ Page({
     })
   },
 
+  to_followings: function () {
+    wx.navigateTo({ url: '/pages/followings/followings?id=' + this.data.id + '&nickname=' + this.data.user.nickname })
+  },
+
+  to_followers: function () {
+    wx.navigateTo({ url: '/pages/followers/followers?id=' + this.data.id + '&nickname=' + this.data.user.nickname})
+  },
+
   fresh: function (callback) {
     var self = this
     

@@ -7,10 +7,12 @@
     "pages/post/photo/photo",
     "pages/people/people",
     "pages/user/user",
+    "pages/userdetail/userdetail",
+    "pages/followings/followings",
+    "pages/followers/followers",
     "pages/tuya/tuya",
     "pages/calc/calc",
-    "pages/calc/list/list",
-    "pages/userdetail/userdetail"
+    "pages/calc/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

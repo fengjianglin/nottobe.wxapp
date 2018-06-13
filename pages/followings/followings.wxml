@@ -1,0 +1,6 @@
+<view class="container">
+  <block wx:for="{{follows}}" wx:key="follows" wx:for-item="item" wx:for-index="itemIdx"> 
+    <user user="{{item.following}}"></user>
+  </block>
+</view>
+<view class="bottom" wx:if="{{isLastPage}}">底线到了...</view>

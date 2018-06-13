@@ -7,25 +7,31 @@ Component({
 
   data: {
     avatar_default: "/images/avatar_default.png",
-    isFollowing: false
+    isFollowing: -1
   },
 
   attached: function () {
-    var self = this
-    wx.request({
-      url: getApp().getUrl("/user/isfollowing"),
-      method: 'GET',
-      data: {
-        SessionId: getApp().data.sessionId,
-        id: self.properties.user.id
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        if (res.data.code == 200) {
-          self.setData({ isFollowing: res.data.data})
+    if (this.properties.user.id != getApp().data.user.id) {
+      var self = this
+      wx.request({
+        url: getApp().getUrl("/user/isfollowing"),
+        method: 'GET',
+        data: {
+          SessionId: getApp().data.sessionId,
+          id: self.properties.user.id
+        },
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          if (res.data.code == 200) {
+            if (res.data.data) {
+              self.setData({ isFollowing: 1 })
+            } else {
+              self.setData({ isFollowing: 0 })
+            }
+          }
         }
-      }
-    })
+      })
+    }
   },
   
   methods: {
