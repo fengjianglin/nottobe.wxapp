@@ -40,6 +40,7 @@
   margin: 8rpx;
   padding: 0;
   border: 4rpx #fff solid;
+  border-radius: 8rpx;
 }
 
 #user_bg .name {

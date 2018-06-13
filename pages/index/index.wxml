@@ -7,7 +7,7 @@
         <open-data class="name" type="userNickName"></open-data>
       </button>
       
-      <image wx:if="{{appData.user.status == 1}}" class="avatar" src="{{appData.user.avatar}}"></image>
+      <image wx:if="{{appData.user.status == 1}}" class="avatar" src="{{appData.user.avatar}}" bindtap='to_user_detail'></image>
       <view wx:if="{{appData.user.status == 1}}" class="name" >{{appData.user.nickname}}</view>
     </view>
     <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>

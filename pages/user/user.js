@@ -27,8 +27,13 @@ Component({
       }
     })
   },
-
+  
   methods: {
+    
+    to_user_detail: function () {
+      wx.navigateTo({ url: '/pages/userdetail/userdetail?id=' + this.properties.user.id })
+    },
+
     unfollow: function () {
       var self = this
       wx.showModal({

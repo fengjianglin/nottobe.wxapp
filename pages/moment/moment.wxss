@@ -26,6 +26,7 @@
   width: 64rpx;
   height: 64rpx;
   border: 4rpx #ddd solid;
+  border-radius: 8rpx;
 }
 
 .name {

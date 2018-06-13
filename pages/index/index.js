@@ -58,6 +58,10 @@ Page({
     app.getUserInfo(res)
   },
 
+  to_user_detail: function () {
+    wx.navigateTo({ url: '/pages/userdetail/userdetail?id=' + this.data.appData.user.id })
+  },
+
   fresh: function (callback) {
     var self = this
     this.setData({
