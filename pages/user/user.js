@@ -1,7 +1,8 @@
 Component({
   properties: {
     user: {
-      type: Object
+      type: Object,
+      observer: 'user_observer'
     }
   },
 
@@ -9,32 +10,31 @@ Component({
     avatar_default: "/images/avatar_default.png",
     isFollowing: -1
   },
-
-  attached: function () {
-    if (this.properties.user.id != getApp().data.user.id) {
-      var self = this
-      wx.request({
-        url: getApp().getUrl("/user/isfollowing"),
-        method: 'GET',
-        data: {
-          SessionId: getApp().data.sessionId,
-          id: self.properties.user.id
-        },
-        header: { 'content-type': 'application/x-www-form-urlencoded' },
-        success: function (res) {
-          if (res.data.code == 200) {
-            if (res.data.data) {
-              self.setData({ isFollowing: 1 })
-            } else {
-              self.setData({ isFollowing: 0 })
-            }
-          }
-        }
-      })
-    }
-  },
   
   methods: {
+    user_observer: function (newVal, oldVal) {
+      if (this.properties.user.id != getApp().data.user.id) {
+        var self = this
+        wx.request({
+          url: getApp().getUrl("/user/isfollowing"),
+          method: 'GET',
+          data: {
+            SessionId: getApp().data.sessionId,
+            id: self.properties.user.id
+          },
+          header: { 'content-type': 'application/x-www-form-urlencoded' },
+          success: function (res) {
+            if (res.data.code == 200) {
+              if (res.data.data) {
+                self.setData({ isFollowing: 1 })
+              } else {
+                self.setData({ isFollowing: 0 })
+              }
+            }
+          }
+        })
+      }
+    },
     
     to_user_detail: function () {
       wx.navigateTo({ url: '/pages/userdetail/userdetail?id=' + this.properties.user.id })
