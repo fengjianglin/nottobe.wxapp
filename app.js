@@ -8,7 +8,7 @@ App({
   dataChangeListeners: [],
 
   getUrl: function (path) {
-    return 'https://ntb.manlanvideo.com' + path;
+    return 'https://ntb.xxicp.cn' + path;
   },
 
   setData: function(options) {
