@@ -10,11 +10,11 @@
       <image wx:if="{{appData.user.status == 1}}" class="avatar" src="{{appData.user.avatar}}" bindtap='to_user_detail'></image>
       <view wx:if="{{appData.user.status == 1}}" class="name" >{{appData.user.nickname}}</view>
     </view>
-    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="to_people" src='http://manlanvideo.com/ntb/people.png'></image>
-    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="to_square" src='http://manlanvideo.com/ntb/square.png'></image>
-    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
+    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="to_people" src='/images/people.png'></image>
+    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="to_square" src='/images/square.png'></image>
+    <image wx:if="{{appData.user.status == 1}}" class="xiangji" bindtap="tap_xiangji" bindlongpress="long_press_xiangji" src='/images/camera.png'></image>
     <button wx:if="{{appData.user.status == 0}}" class="xiangji-btn" open-type="getUserInfo" bindgetuserinfo="getuserinfo">
-      <image  class="xiangji" src='http://manlanvideo.com/ntb/camera.png'></image>
+      <image  class="xiangji" src='/images/camera.png'></image>
     </button>
   </view>
   <view id="pull_tip">{{pullDownRefreshTip}}</view>

@@ -1,5 +1,5 @@
 #user_bg {
-  background-image: url("http://manlanvideo.com/ntb/timg.png");
+  background-image: url(https://ntb.xxicp.cn/user_bg.png);
   width: 100%;
   height: 88rpx;
   padding: 0;

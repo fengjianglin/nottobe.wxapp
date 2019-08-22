@@ -5,20 +5,21 @@ Page({
 
   onLoad: function (options) {
     var self = this
-    wx.request({
-      url: app.getUrl('/ntb/reviewed.txt.4.txt'),
-      method: 'GET',
-      success: function (res) {
-        if (res.data == 1) {
-          self.toIndex();
-        } else {
-          self.toCalc()
-        }
-      },
-      fail: function () {
-        self.toCalc()
-      }
-    })
+    self.toIndex();
+    // wx.request({
+    //   url: app.getUrl('/ntb/reviewed.txt.3.txt'),
+    //   method: 'GET',
+    //   success: function (res) {
+    //     if (res.data == 1) {
+    //       self.toIndex();
+    //     } else {
+    //       self.toCalc()
+    //     }
+    //   },
+    //   fail: function () {
+    //     self.toCalc()
+    //   }
+    // })
   },
 
   toIndex: function () {
@@ -69,4 +70,5 @@ Page({
       url: '/pages/calc/calc'
     })
   }
+  
 })
